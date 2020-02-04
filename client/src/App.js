@@ -1,37 +1,36 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { Switch, Redirect, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import logo from './logo.svg';
-
-import './App.css';
+import "./App.css";
+import Books from "./containers/Books/Books.jsx";
 
 class App extends Component {
   state = {
-    response: ''
+    response: ""
   };
 
-  componentDidMount() {
-    this.callApi()
-      .then(res => this.setState({ response: res.express }))
-      .catch(err => console.log(err));
-  }
+  // componentDidMount() {
+  //   this.callApi()
+  //     .then(res => this.setState({ response: res.express }))
+  //     .catch(err => console.log(err));
+  // }
 
-  callApi = async () => {
-    const response = await fetch('/api/hello');
-    const body = await response.json();
+  // callApi = async () => {
+  //   const response = await fetch("/api/hello");
+  //   const body = await response.json();
 
-    if (response.status !== 200) throw Error(body.message);
+  //   if (response.status !== 200) throw Error(body.message);
 
-    return body;
-  };
+  //   return body;
+  // };
 
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">{this.state.response}</p>
+        <Switch>
+          <Route path="/" component={Books} />
+        </Switch>
       </div>
     );
   }
