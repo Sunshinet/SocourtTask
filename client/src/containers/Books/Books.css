@@ -1,0 +1,8 @@
+.Book {
+    flex:2;
+    width: 100%;
+}
+
+.btnLogOut{
+    text-align: end;
+}

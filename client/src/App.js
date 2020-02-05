@@ -4,6 +4,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./App.css";
 import Books from "./containers/Books/Books.jsx";
+import SideMenu from "./containers/SideMenu/SideMenu";
+import BookDetails from "./components/BookDetails/BookDetails";
+import RegComponent from "./containers/RegComponent/RegComponent";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 class App extends Component {
   state = {
@@ -28,9 +32,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Switch>
-          <Route path="/" component={Books} />
-        </Switch>
+        <Route>
+          <SideMenu />
+          <Switch>
+            <Redirect exact from="/" to="/book" />
+            <PrivateRoute exact path="/book" component={Books} />
+            <PrivateRoute path="/book/:id" component={BookDetails} />
+            <Route path="/login" component={RegComponent} />
+            <Route path="/registration" component={RegComponent} />
+          </Switch>
+        </Route>
       </div>
     );
   }
